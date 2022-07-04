@@ -3,6 +3,7 @@ package com.cardgameproject.cardgame.entity;
 import com.cardgameproject.cardgame.enums.rarityLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public abstract class Card {
 
     @Id
