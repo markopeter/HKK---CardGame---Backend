@@ -6,6 +6,7 @@ import com.cardgameproject.cardgame.enums.stateType;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -15,6 +16,10 @@ import javax.persistence.Table;
 @NoArgsConstructor
 public class Creatures extends Card {
 
+
+    @Column(
+            name = "state",
+            nullable = false)
     private stateType state;
     private raceType race;
     private int baseAttack;
