@@ -3,6 +3,8 @@ package com.cardgameproject.cardgame;
 
 import com.cardgameproject.cardgame.entity.Creatures;
 import com.cardgameproject.cardgame.repositories.CardRepository;
+import com.cardgameproject.cardgame.repositories.CreaturesRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +21,7 @@ public class CardGameApplication {
 		SpringApplication.run(CardGameApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner commandLineRunner (CardRepository cardRep){
+	CommandLineRunner commandLineRunner (@Qualifier("cardRepository") CardRepository cardRep, CreaturesRepository creatureRepository){
 		return args -> {
 			Creatures test =  Creatures.builder()
 					.baseAttack(10)
@@ -32,20 +34,20 @@ public class CardGameApplication {
 					.rarity(COMMON)
 					.state(PASSIVE)
 					.build();
-//			Creatures test2 =  Creatures.builder()
-//					.baseAttack(10)
-//					.baseHealth(10)
-//					.canUseWeapon(false)
-//					.description("Test")
-//					.manaCost(2)
-//					.name("Demagorg")
-//					.race(MONSTER)
-//					.rarity(COMMON)
-//					.state(PASSIVE)
-//					.build();
+			Creatures test2 =  Creatures.builder()
+					.baseAttack(10)
+					.baseHealth(10)
+					.canUseWeapon(false)
+					.description("Test2")
+					.manaCost(2)
+					.name("Demagorg")
+					.race(MONSTER)
+					.rarity(COMMON)
+					.state(PASSIVE)
+					.build();
 			cardRep.save(test);
-//			cardRep.save(test2);
-
+			cardRep.save(test2);
+			System.out.println(creatureRepository.findByName("Demagorg").getDescription());
 		};
 	}
 
