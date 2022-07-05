@@ -28,8 +28,9 @@ public class Creatures extends Card {
 
 
     @Builder
-    public Creatures(Long id, String name, int manaCost, String description, rarityLevel rarity, raceType race, int baseAttack, int baseHealth, boolean canUseWeapon) {
+    public Creatures(Long id, String name, int manaCost, String description, rarityLevel rarity, stateType state, raceType race, int baseAttack, int baseHealth, boolean canUseWeapon) {
         super(id, name, manaCost, description, rarity);
+        this.state = state;
         this.race = race;
         this.baseAttack = baseAttack;
         this.baseHealth = baseHealth;
