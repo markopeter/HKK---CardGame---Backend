@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import static com.cardgameproject.cardgame.enums.raceType.MONSTER;
 import static com.cardgameproject.cardgame.enums.rarityLevel.COMMON;
+import static com.cardgameproject.cardgame.enums.stateType.ACTIVE;
 import static com.cardgameproject.cardgame.enums.stateType.PASSIVE;
 
 @SpringBootApplication
@@ -32,7 +33,7 @@ public class CardGameApplication {
 					.name("Boogeyman")
 					.race(MONSTER)
 					.rarity(COMMON)
-					.state(PASSIVE)
+					.state(ACTIVE)
 					.build();
 			Creatures test2 =  Creatures.builder()
 					.baseAttack(10)
@@ -47,7 +48,7 @@ public class CardGameApplication {
 					.build();
 			cardRep.save(test);
 			cardRep.save(test2);
-			System.out.println(creatureRepository.findByName("Demagorg").getDescription());
+			System.out.println(creatureRepository.findAllBystate(ACTIVE));
 		};
 	}
 
