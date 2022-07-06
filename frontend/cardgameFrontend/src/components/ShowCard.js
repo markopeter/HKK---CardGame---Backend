@@ -4,7 +4,7 @@ import ShowCardResult from "./ShowCardResult";
 
 const ShowCard = () => {
     const [card, setCard] = useState([])
-    const url = "http://localhost:8080/creatures";
+    const url = "https://hkk-petproject.herokuapp.com/creatures";
     const fetchCards = async () => {
         await axios.get(url).then((response) => {
             console.log(response);
