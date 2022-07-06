@@ -1,5 +1,6 @@
 package com.cardgameproject.cardgame.controller;
 
+import com.cardgameproject.cardgame.card_creator.CardCreator;
 import com.cardgameproject.cardgame.entity.CreatureCard;
 import com.cardgameproject.cardgame.service.CreatureCardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,14 @@ public class CardController {
     @GetMapping("/creatures")
     public List<CreatureCard> getAllCreatures (){
         return creatureService.getAllCreatures();
+    }
+
+    @GetMapping("/")
+    public void Init(){
+        List<CreatureCard> starterCards = CardCreator.createStarterCard();
+        for (CreatureCard starterCard : starterCards) {
+            creatureService.addCreatureCard(starterCard);
+        }
     }
 
 }
