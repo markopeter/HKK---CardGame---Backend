@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000"},
+@CrossOrigin(origins = {"https://petproject-cardgame-frontend.herokuapp.com/"},
         methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
         , allowedHeaders = "*")
 @RestController
