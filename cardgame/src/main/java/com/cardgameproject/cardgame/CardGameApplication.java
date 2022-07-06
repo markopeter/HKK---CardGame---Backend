@@ -2,8 +2,6 @@ package com.cardgameproject.cardgame;
 
 
 import com.cardgameproject.cardgame.entity.CreatureCard;
-import com.cardgameproject.cardgame.repositories.CardRepository;
-import com.cardgameproject.cardgame.repositories.CreaturesRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
