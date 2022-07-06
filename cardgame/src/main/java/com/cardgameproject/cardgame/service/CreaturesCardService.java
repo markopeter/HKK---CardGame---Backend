@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CreaturesCardService implements CreaturesService {
@@ -34,5 +35,13 @@ public class CreaturesCardService implements CreaturesService {
     @Override
     public List<Creatures> findAllBystateType(stateType state) {
         return creatureRepository.findAllBystate(state);
+    }
+
+    public List<Creatures> getAllCreatures (){
+       return creatureRepository.findAll()
+               .stream()
+               .filter(cre -> cre instanceof Creatures )
+               .map (cre -> (Creatures) cre)
+               .collect(Collectors.toList());
     }
 }
