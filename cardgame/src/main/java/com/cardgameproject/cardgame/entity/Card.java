@@ -9,9 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="discriminatorColumn")
-@Table(name="AbstractCard")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

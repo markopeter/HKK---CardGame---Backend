@@ -46,8 +46,8 @@ public class CardGameApplication {
 					.rarity(COMMON)
 					.state(PASSIVE)
 					.build();
-			cardRep.save(test);
-			cardRep.save(test2);
+			creatureRepository.save(test);
+			creatureRepository.save(test2);
 			System.out.println(creatureRepository.findAllBystate(ACTIVE));
 		};
 	}
