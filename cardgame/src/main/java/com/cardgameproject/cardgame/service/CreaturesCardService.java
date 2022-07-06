@@ -1,5 +1,5 @@
 package com.cardgameproject.cardgame.service;
-import com.cardgameproject.cardgame.entity.Creatures;
+import com.cardgameproject.cardgame.entity.CreatureCard;
 import com.cardgameproject.cardgame.enums.stateType;
 import com.cardgameproject.cardgame.repositories.CreaturesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,30 +18,30 @@ public class CreaturesCardService implements CreaturesService {
     }
 
     @Override
-    public Creatures findByName(String name) {
+    public CreatureCard findByName(String name) {
         return creatureRepository.findByName(name);
     }
 
     @Override
-    public List<Creatures> findAllBybaseAttack(int attack) {
+    public List<CreatureCard> findAllBybaseAttack(int attack) {
        return creatureRepository.findAllBybaseAttack(attack);
     }
 
     @Override
-    public List<Creatures> findAllBybaseHealth(int health) {
+    public List<CreatureCard> findAllBybaseHealth(int health) {
         return creatureRepository.findAllBybaseHealth(health);
     }
 
     @Override
-    public List<Creatures> findAllBystateType(stateType state) {
+    public List<CreatureCard> findAllBystateType(stateType state) {
         return creatureRepository.findAllBystate(state);
     }
 
-    public List<Creatures> getAllCreatures (){
+    public List<CreatureCard> getAllCreatures (){
        return creatureRepository.findAll()
                .stream()
-               .filter(cre -> cre instanceof Creatures )
-               .map (cre -> (Creatures) cre)
+               .filter(cre -> cre instanceof CreatureCard)
+               .map (cre -> (CreatureCard) cre)
                .collect(Collectors.toList());
     }
 }

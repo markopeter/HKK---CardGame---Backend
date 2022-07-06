@@ -1,7 +1,6 @@
 package com.cardgameproject.cardgame.controller;
 
-import com.cardgameproject.cardgame.entity.Card;
-import com.cardgameproject.cardgame.entity.Creatures;
+import com.cardgameproject.cardgame.entity.CreatureCard;
 import com.cardgameproject.cardgame.service.CreaturesCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +24,7 @@ public class CardController {
     }
 
     @GetMapping("/creatures")
-    public List<Creatures> getAllCreatures (){
+    public List<CreatureCard> getAllCreatures (){
         return creatureService.getAllCreatures();
     }
 

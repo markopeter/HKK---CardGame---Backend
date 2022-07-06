@@ -1,7 +1,7 @@
 package com.cardgameproject.cardgame;
 
 
-import com.cardgameproject.cardgame.entity.Creatures;
+import com.cardgameproject.cardgame.entity.CreatureCard;
 import com.cardgameproject.cardgame.repositories.CardRepository;
 import com.cardgameproject.cardgame.repositories.CreaturesRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +24,7 @@ public class CardGameApplication {
 	@Bean
 	CommandLineRunner commandLineRunner (@Qualifier("cardRepository") CardRepository cardRep, CreaturesRepository creatureRepository){
 		return args -> {
-			Creatures test =  Creatures.builder()
+			CreatureCard test =  CreatureCard.builder()
 					.baseAttack(10)
 					.baseHealth(10)
 					.canUseWeapon(false)
@@ -35,7 +35,7 @@ public class CardGameApplication {
 					.rarity(COMMON)
 					.state(ACTIVE)
 					.build();
-			Creatures test2 =  Creatures.builder()
+			CreatureCard test2 =  CreatureCard.builder()
 					.baseAttack(10)
 					.baseHealth(10)
 					.canUseWeapon(false)
