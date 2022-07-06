@@ -1,7 +1,7 @@
 package com.cardgameproject.cardgame.controller;
 
 import com.cardgameproject.cardgame.entity.CreatureCard;
-import com.cardgameproject.cardgame.service.CreaturesCardService;
+import com.cardgameproject.cardgame.service.CreatureCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +16,10 @@ import java.util.List;
 @RestController
 public class CardController {
 
-    private CreaturesCardService creatureService;
+    private CreatureCardService creatureService;
 
     @Autowired
-    public CardController(CreaturesCardService creatureService) {
+    public CardController(CreatureCardService creatureService) {
         this.creatureService = creatureService;
     }
 
