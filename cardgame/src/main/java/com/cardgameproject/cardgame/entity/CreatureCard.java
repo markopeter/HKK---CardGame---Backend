@@ -5,15 +5,17 @@ import com.cardgameproject.cardgame.enums.rarityLevel;
 import com.cardgameproject.cardgame.enums.stateType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
-@Entity(name = "creature_card")
+@Data
+@Entity(name = "CreatureCard")
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@Table(name = "creaturecard")
 public class CreatureCard {
     @Id
     @Column(name = "id", nullable = false)
