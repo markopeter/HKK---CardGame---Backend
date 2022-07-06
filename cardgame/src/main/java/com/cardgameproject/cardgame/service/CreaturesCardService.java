@@ -16,31 +16,5 @@ public class CreaturesCardService  {
         this.creatureRepository = creatureRepository;
     }
 
-    @Override
-    public CreatureCard findByName(String name) {
-        return creatureRepository.findByName(name);
-    }
 
-    @Override
-    public List<CreatureCard> findAllBybaseAttack(int attack) {
-       return creatureRepository.findAllBybaseAttack(attack);
-    }
-
-    @Override
-    public List<CreatureCard> findAllBybaseHealth(int health) {
-        return creatureRepository.findAllBybaseHealth(health);
-    }
-
-    @Override
-    public List<CreatureCard> findAllBystateType(stateType state) {
-        return creatureRepository.findAllBystate(state);
-    }
-
-    public List<CreatureCard> getAllCreatures (){
-       return creatureRepository.findAll()
-               .stream()
-               .filter(cre -> cre instanceof CreatureCard)
-               .map (cre -> (CreatureCard) cre)
-               .collect(Collectors.toList());
-    }
 }
