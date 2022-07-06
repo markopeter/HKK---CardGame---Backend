@@ -7,15 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cardgame" />
+        <module name="PetProject---CardGame" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cardgame" target="17" />
+      <module name="PetProject---CardGame" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PetProject---CardGame" options="-parameters" />
       <module name="cardgame" options="-parameters" />
     </option>
   </component>
