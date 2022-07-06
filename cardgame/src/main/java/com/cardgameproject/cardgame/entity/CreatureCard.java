@@ -22,9 +22,9 @@ public class CreatureCard {
     @Column(
             name = "state",
             nullable = false)
+    private stateType state;
     private int manaCost;
     private String name;
-    private stateType state;
     private raceType race;
     private rarityLevel rarity;
     private int baseAttack;
