@@ -2,6 +2,7 @@ package com.cardgameproject.cardgame;
 
 
 import com.cardgameproject.cardgame.entity.CreatureCard;
+import com.cardgameproject.cardgame.repositories.CreatureCardRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +21,7 @@ public class CardGameApplication {
 		SpringApplication.run(CardGameApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner commandLineRunner (@Qualifier("cardRepository") CardRepository cardRep, CreaturesRepository creatureRepository){
+	CommandLineRunner commandLineRunner (CreatureCardRepository creatureRepository){
 		return args -> {
 			CreatureCard test =  CreatureCard.builder()
 					.baseAttack(10)
@@ -33,20 +34,7 @@ public class CardGameApplication {
 					.rarity(COMMON)
 					.state(ACTIVE)
 					.build();
-			CreatureCard test2 =  CreatureCard.builder()
-					.baseAttack(10)
-					.baseHealth(10)
-					.canUseWeapon(false)
-					.description("Test2")
-					.manaCost(2)
-					.name("Demagorg")
-					.race(MONSTER)
-					.rarity(COMMON)
-					.state(PASSIVE)
-					.build();
 			creatureRepository.save(test);
-			creatureRepository.save(test2);
-			System.out.println(creatureRepository.findAllBystate(ACTIVE));
 		};
 	}
 
