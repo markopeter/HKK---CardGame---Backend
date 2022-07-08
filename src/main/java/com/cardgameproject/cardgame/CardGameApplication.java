@@ -40,7 +40,19 @@ public class CardGameApplication {
 					.rarity(COMMON)
 					.state(ACTIVE)
 					.build();
+			CreatureCard test2 =  CreatureCard.builder()
+					.baseAttack(10)
+					.baseHealth(10)
+					.canUseWeapon(false)
+					.description("Test")
+					.manaCost(2)
+					.name("SpookeySkeleton")
+					.race(MONSTER)
+					.rarity(COMMON)
+					.state(ACTIVE)
+					.build();
 			creatureRepository.save(test);
+			creatureRepository.save(test2);
 		};
 	}
 
