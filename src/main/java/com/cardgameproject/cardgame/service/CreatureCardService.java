@@ -21,5 +21,8 @@ public class CreatureCardService {
     public void addCreatureCard(CreatureCard card){
         creatureRepository.save(card);
     }
+    public CreatureCard findCreatureCardByName(String name){
+        return creatureRepository.findCreatureCardByName(name);
+    }
 
 }
