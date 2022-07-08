@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CreatureCardRepository extends JpaRepository<CreatureCard, Long> {
+
+    CreatureCard findCreatureCardByName(String name);
+
 }
