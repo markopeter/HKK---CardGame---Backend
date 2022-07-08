@@ -33,6 +33,7 @@ public class CreatureCard {
     private int baseHealth;
     private boolean canUseWeapon;
     private String description;
+    private String imageUrl;
 
 
 }

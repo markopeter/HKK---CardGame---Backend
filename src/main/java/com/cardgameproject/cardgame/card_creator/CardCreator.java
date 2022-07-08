@@ -37,6 +37,7 @@ public class CardCreator {
                 .race(MONSTER)
                 .rarity(COMMON)
                 .state(ACTIVE)
+                .imageUrl("https://www.beholder.hu/pic/galeria/0567.jpg")
                 .build();
         cards.add(test1);
         cards.add(test2);
