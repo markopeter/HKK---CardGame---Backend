@@ -1,20 +1,22 @@
 package com.cardgameproject.cardgame.data;
 
+import com.cardgameproject.cardgame.entity.CreatureCard;
 import com.cardgameproject.cardgame.repositories.CreatureCardRepository;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 @Component
 public class SampleDataLoader implements CommandLineRunner {
 
 
     private final CreatureCardRepository cardRepository;
-    private final Faker faker;
 
-    public SampleDataLoader(CreatureCardRepository cardRepository, Faker faker) {
+    public SampleDataLoader(CreatureCardRepository cardRepository) {
         this.cardRepository = cardRepository;
-        this.faker = faker;
     }
 
     @Override
