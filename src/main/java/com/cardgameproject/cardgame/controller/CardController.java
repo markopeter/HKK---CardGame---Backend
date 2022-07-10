@@ -37,7 +37,7 @@ public class CardController {
         return creatureService.getAllCreatures();
     }
 
-    @GetMapping("/")
+    @GetMapping("/card/page")
     public Page<CreatureCard> findAll(@RequestParam int page, @RequestParam int size){
         PageRequest pageRequest = PageRequest.of(page,size);
         return creatureRepository.findAll(pageRequest);
