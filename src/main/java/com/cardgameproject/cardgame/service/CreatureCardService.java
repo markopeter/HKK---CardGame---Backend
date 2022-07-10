@@ -16,7 +16,7 @@ public class CreatureCardService {
     }
 
     public List<CreatureCard> getAllCreatures(){
-        return creatureRepository.findAll();
+        return (List<CreatureCard>) creatureRepository.findAll();
     }
     public void addCreatureCard(CreatureCard card){
         creatureRepository.save(card);
