@@ -24,6 +24,7 @@ public class SampleDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         int amountOfCards = 100;
+        String [] randomNames = {"SpookySkeleton", "BoogeyMan", "BigBadWolf", "ScaryGhost", "TerrificTroll"};
         Random rand = new Random();
         for(int i = 0; i < amountOfCards; i++) {
             cardRepository.save(
@@ -33,7 +34,7 @@ public class SampleDataLoader implements CommandLineRunner {
                             .canUseWeapon(true)
                             .description("This the test card number : " + i)
                             .manaCost(rand.nextInt((10 - 1) + 1) + 1)
-                            .name("Test " + i + " name ")
+                            .name(randomNames[rand.nextInt((4 - 1) + 1) + 1])
                             .race(MONSTER)
                             .rarity(COMMON)
                             .imageUrl("No image")
