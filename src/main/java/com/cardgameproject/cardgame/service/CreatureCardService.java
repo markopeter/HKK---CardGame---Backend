@@ -28,16 +28,16 @@ public class CreatureCardService {
         return creatureRepository.findCreatureCardByNameAndManaCost(name, manaCost);
     }
 
-    public List<CreatureCard> findCardsByDetail(String detail){
+    public List<CreatureCard> findCardsByDetail(String detail, String value){
         switch(detail){
             case "name":
-                return creatureRepository.findAllByName(detail);
+                return creatureRepository.findAllByName(value);
             case "manaCost":
-                return creatureRepository.findAllByManaCost(Integer.parseInt(detail));
+                return creatureRepository.findAllByManaCost(Integer.parseInt(value));
             case "baseAttack":
-                return creatureRepository.findAllBybaseAttack(Integer.parseInt(detail));
+                return creatureRepository.findAllBybaseAttack(Integer.parseInt(value));
             case "baseHealth":
-                return creatureRepository.findAllBybaseHealth(Integer.parseInt(detail));
+                return creatureRepository.findAllBybaseHealth(Integer.parseInt(value));
             default:
                 System.out.println("No card found !");
         }
