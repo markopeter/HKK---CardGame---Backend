@@ -43,4 +43,10 @@ public class CardController {
         return creatureRepository.findAll(pageRequest);
     }
 
+    @GetMapping("creature/{name}/{manaCost}")
+    public List<CreatureCard> getAllCardByNameAndManaCost
+            (@PathVariable String manaCost, @PathVariable String name){
+        return creatureService.findCardsByNameAndManaCost(name, Integer.parseInt(manaCost));
+    }
+
 }

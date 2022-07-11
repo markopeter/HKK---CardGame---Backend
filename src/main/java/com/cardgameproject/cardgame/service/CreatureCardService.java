@@ -24,5 +24,23 @@ public class CreatureCardService {
     public CreatureCard findCreatureCardByName(String name){
         return creatureRepository.findCreatureCardByName(name);
     }
+    public List<CreatureCard> findCardsByNameAndManaCost (String name, int manaCost){
+        return creatureRepository.findCreatureCardByNameAndManaCost(name, manaCost);
+    }
 
+    public List<CreatureCard> findCardsByDetail(String detail){
+        switch(detail){
+            case "name":
+                return creatureRepository.findAllByName(detail);
+            case "manaCost":
+                return creatureRepository.findAllByManaCost(Integer.parseInt(detail));
+            case "baseAttack":
+                return creatureRepository.findAllBybaseAttack(Integer.parseInt(detail));
+            case "baseHealth":
+                return creatureRepository.findAllBybaseHealth(Integer.parseInt(detail));
+            default:
+                System.out.println("No card found !");
+        }
+        return null;
+    }
 }
