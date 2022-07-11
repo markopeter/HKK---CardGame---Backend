@@ -24,5 +24,7 @@ public class CreatureCardService {
     public CreatureCard findCreatureCardByName(String name){
         return creatureRepository.findCreatureCardByName(name);
     }
-
+    public List<CreatureCard> findCardsByNameAndManaCost (String name, int manaCost){
+        return creatureRepository.findCreatureCardByNameAndManaCost(name, manaCost);
+    }
 }
