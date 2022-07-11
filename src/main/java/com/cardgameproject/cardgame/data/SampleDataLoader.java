@@ -34,7 +34,9 @@ public class SampleDataLoader implements CommandLineRunner {
                             .canUseWeapon(true)
                             .description("This the test card number : " + i)
                             .manaCost(rand.nextInt((10 - 1) + 1) + 1)
-                            .name(randomNames[rand.nextInt((4 - 1) + 1) + 1])
+                            //TODO
+                            //Get rid of magic numbers, extract them out the variables
+                            .name(randomNames[rand.nextInt((4 - 1) + 1) + 1] + rand.nextInt((5 - 1) + 1) + 1)
                             .race(MONSTER)
                             .rarity(COMMON)
                             .imageUrl("No image")
