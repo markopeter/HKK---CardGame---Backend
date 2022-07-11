@@ -14,8 +14,8 @@ public interface CreatureCardRepository extends PagingAndSortingRepository<Creat
     CreatureCard findCreatureCardByName(String name);
     List<CreatureCard> findAllByManaCost(int manaCost);
     List<CreatureCard> findAllByName(String name);
-    List<CreatureCard> findAllBybaseHealth(String baseHealth);
-    List<CreatureCard> findAllBybaseAttack(String baseAttack);
+    List<CreatureCard> findAllBybaseHealth(int baseHealth);
+    List<CreatureCard> findAllBybaseAttack(int baseAttack);
     @Query("SELECT c FROM CreatureCard c WHERE name = :name AND manaCost = :manaCost")
     List<CreatureCard> findCreatureCardByNameAndManaCost(@Param("name") String name
             ,@Param ("manaCost") int manaCost);
