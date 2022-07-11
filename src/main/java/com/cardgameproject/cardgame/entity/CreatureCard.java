@@ -25,7 +25,15 @@ public class CreatureCard {
             name = "state",
             nullable = false)
     private stateType state;
+    @Column(
+            name="manaCost",
+            nullable = false
+    )
     private int manaCost;
+    @Column(
+            name="name",
+            nullable = false
+    )
     private String name;
     private raceType race;
     private rarityLevel rarity;
