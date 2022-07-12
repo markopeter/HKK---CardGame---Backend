@@ -15,7 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="PetProject---CardGame" />
+          <factory-entry name="PetProject---CardGame" value="03ad2330-e39a-4110-82d9-d5434db8d6d1" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
