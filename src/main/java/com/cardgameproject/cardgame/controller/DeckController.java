@@ -51,4 +51,14 @@ public class DeckController {
         deckService.deleteDeck(Long.valueOf(id));
     }
 
+    @GetMapping(value ="deck/add-card/{name}")
+    public DeckEntity getDeckEntity(@PathVariable String name){
+         return deckService.getDeckByName(name);
+    }
+
+    @PostMapping(value = "/deck/add-card/")
+    public void addCardToDeck(@RequestBody Map<String, Object> payLoad){
+        deckService.addCardToDeck((String)payLoad.get("name"), Long.valueOf((String)payLoad.get("id")));
+    }
+
 }
