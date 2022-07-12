@@ -3,12 +3,14 @@ package com.cardgameproject.cardgame.entity;
 import com.cardgameproject.cardgame.enums.raceType;
 import com.cardgameproject.cardgame.enums.rarityLevel;
 import com.cardgameproject.cardgame.enums.stateType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity(name = "CreatureCard")
@@ -42,6 +44,9 @@ public class CreatureCard {
     private boolean canUseWeapon;
     private String description;
     private String imageUrl;
+    @ManyToMany(mappedBy="cards")
+    @JsonIgnore
+    private List<DeckEntity> decks = new ArrayList<>();
 
 
 }
