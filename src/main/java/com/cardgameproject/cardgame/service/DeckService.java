@@ -42,5 +42,6 @@ public class DeckService {
         CreatureCard cardToAdd = creatureCardRepository.findById(cardId).get();
         List<CreatureCard> cards = selectedDeck.getCards();
         cards.add(cardToAdd);
+        deckRepository.save(selectedDeck);
     }
 }
