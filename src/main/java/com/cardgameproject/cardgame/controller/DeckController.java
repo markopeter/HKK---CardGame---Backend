@@ -46,4 +46,9 @@ public class DeckController {
         return deck.getCards();
     }
 
+    @DeleteMapping(value = "/deck/{id}")
+    public void deleteDeckById(@PathVariable String id){
+        deckService.deleteDeck(Long.valueOf(id));
+    }
+
 }
