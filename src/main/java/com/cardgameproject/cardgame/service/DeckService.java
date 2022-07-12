@@ -28,4 +28,8 @@ public class DeckService {
     public DeckEntity getDeckByName(String name){
         return deckRepository.findDeckEntityByDeckName(name);
     }
+
+    public void deleteDeck(Long id){
+        deckRepository.deleteById(id);
+    }
 }
