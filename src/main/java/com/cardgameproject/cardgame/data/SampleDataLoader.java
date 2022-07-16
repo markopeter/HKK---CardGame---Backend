@@ -33,6 +33,10 @@ public class SampleDataLoader implements CommandLineRunner {
         List<CreatureCard> sampleListThree = new ArrayList<>();
         int amountOfCards = 100;
         String [] randomNames = {"SpookySkeleton", "BoogeyMan", "BigBadWolf", "ScaryGhost", "TerrificTroll"};
+        String [] randomPictures = {"https://www.beholder.hu/pic/galeria/0497.jpg",
+                "https://www.beholder.hu/pic/galeria/0465.jpg",
+                "https://www.beholder.hu/pic/galeria/0464.jpg",
+        "https://www.beholder.hu/pic/galeria/0451.jpg", "https://www.beholder.hu/pic/galeria/0420.jpg"};
         Random rand = new Random();
         for(int i = 0; i < amountOfCards; i++) {
 
@@ -47,7 +51,7 @@ public class SampleDataLoader implements CommandLineRunner {
                     .name(randomNames[rand.nextInt((4 - 1) + 1) + 1] + i)
                     .race(MONSTER)
                     .rarity(COMMON)
-                    .imageUrl("No image")
+                    .imageUrl(randomPictures[rand.nextInt((4 - 1) + 1) + 1])
                     .state(PASSIVE)
                     .build();
 
