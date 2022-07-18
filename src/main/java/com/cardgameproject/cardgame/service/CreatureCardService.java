@@ -1,6 +1,6 @@
 package com.cardgameproject.cardgame.service;
-import com.cardgameproject.cardgame.entity.CreatureCard;
-import com.cardgameproject.cardgame.repositories.CreatureCardRepository;
+import com.cardgameproject.cardgame.entity.Card;
+import com.cardgameproject.cardgame.repository.CreatureCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,20 @@ public class CreatureCardService {
         this.creatureRepository = creatureRepository;
     }
 
-    public List<CreatureCard> getAllCreatures(){
-        return (List<CreatureCard>) creatureRepository.findAll();
+    public List<Card> getAllCreatures(){
+        return (List<Card>) creatureRepository.findAll();
     }
-    public void addCreatureCard(CreatureCard card){
+    public void addCreatureCard(Card card){
         creatureRepository.save(card);
     }
-    public CreatureCard findCreatureCardByName(String name){
+    public Card findCreatureCardByName(String name){
         return creatureRepository.findCreatureCardByName(name);
     }
-    public List<CreatureCard> findCardsByNameAndManaCost (String name, int manaCost){
+    public List<Card> findCardsByNameAndManaCost (String name, int manaCost){
         return creatureRepository.findCreatureCardByNameAndManaCost(name, manaCost);
     }
 
-    public List<CreatureCard> findCardsByDetail(String detail, String value){
+    public List<Card> findCardsByDetail(String detail, String value){
         switch(detail){
             case "name":
                 return creatureRepository.findAllByName(value);
