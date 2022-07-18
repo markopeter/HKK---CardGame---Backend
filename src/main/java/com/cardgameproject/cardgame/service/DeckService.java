@@ -1,9 +1,9 @@
 package com.cardgameproject.cardgame.service;
 
-import com.cardgameproject.cardgame.entity.CreatureCard;
+import com.cardgameproject.cardgame.entity.Card;
 import com.cardgameproject.cardgame.entity.DeckEntity;
-import com.cardgameproject.cardgame.repositories.CreatureCardRepository;
-import com.cardgameproject.cardgame.repositories.DeckRepository;
+import com.cardgameproject.cardgame.repository.CreatureCardRepository;
+import com.cardgameproject.cardgame.repository.DeckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +39,8 @@ public class DeckService {
 
     public void addCardToDeck(String name, Long cardId){
         DeckEntity selectedDeck = deckRepository.findDeckEntityByDeckName(name);
-        CreatureCard cardToAdd = creatureCardRepository.findById(cardId).get();
-        List<CreatureCard> cards = selectedDeck.getCards();
+        Card cardToAdd = creatureCardRepository.findById(cardId).get();
+        List<Card> cards = selectedDeck.getCards();
         cards.add(cardToAdd);
         deckRepository.save(selectedDeck);
     }
