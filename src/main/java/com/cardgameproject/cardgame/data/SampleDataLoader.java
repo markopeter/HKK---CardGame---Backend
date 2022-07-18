@@ -1,8 +1,8 @@
 package com.cardgameproject.cardgame.data;
-import com.cardgameproject.cardgame.entity.CreatureCard;
+import com.cardgameproject.cardgame.entity.Card;
 import com.cardgameproject.cardgame.entity.DeckEntity;
-import com.cardgameproject.cardgame.repositories.CreatureCardRepository;
-import com.cardgameproject.cardgame.repositories.DeckRepository;
+import com.cardgameproject.cardgame.repository.CreatureCardRepository;
+import com.cardgameproject.cardgame.repository.DeckRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -28,9 +28,9 @@ public class SampleDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<CreatureCard> sampleListOne = new ArrayList<>();
-        List<CreatureCard> sampleListTwo = new ArrayList<>();
-        List<CreatureCard> sampleListThree = new ArrayList<>();
+        List<Card> sampleListOne = new ArrayList<>();
+        List<Card> sampleListTwo = new ArrayList<>();
+        List<Card> sampleListThree = new ArrayList<>();
         int amountOfCards = 100;
         String [] randomNames = {"SpookySkeleton", "BoogeyMan", "BigBadWolf", "ScaryGhost", "TerrificTroll"};
         String [] randomPictures = {"https://www.beholder.hu/pic/galeria/0497.jpg",
@@ -40,7 +40,7 @@ public class SampleDataLoader implements CommandLineRunner {
         Random rand = new Random();
         for(int i = 0; i < amountOfCards; i++) {
 
-            CreatureCard testCard = CreatureCard.builder()
+            Card testCard = Card.builder()
                     .baseAttack(rand.nextInt((10 - 1) + 1) + 1)
                     .baseHealth(rand.nextInt((10 - 1) + 1) + 1)
                     .canUseWeapon(true)
