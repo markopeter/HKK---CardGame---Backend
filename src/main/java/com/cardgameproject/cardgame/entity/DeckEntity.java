@@ -5,26 +5,27 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Deck")
+@Entity
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "deck")
+@Table (name ="decks")
 public class DeckEntity {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany
-    @JoinTable(name="deck_creaturecard",
-            joinColumns=
-            @JoinColumn(name="deck_id", referencedColumnName="id"),
-            inverseJoinColumns=
-            @JoinColumn(name="creaturecard_id", referencedColumnName="id")
-    )
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "deck_cards",
+            joinColumns = { @JoinColumn(name = "DeckEntity_id")},
+            inverseJoinColumns = { @JoinColumn(name = "Card_id")})
     @JsonIgnore
-    private List<CreatureCard> cards = new ArrayList<>();
+    private List<Card> cards = new ArrayList<>();
+
     private String deckName;
 }

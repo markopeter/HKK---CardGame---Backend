@@ -1,7 +1,7 @@
 package com.cardgameproject.cardgame.controller;
 
-import com.cardgameproject.cardgame.entity.CreatureCard;
-import com.cardgameproject.cardgame.repositories.CreatureCardRepository;
+import com.cardgameproject.cardgame.entity.Card;
+import com.cardgameproject.cardgame.repository.CreatureCardRepository;
 import com.cardgameproject.cardgame.service.CreatureCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,30 +27,30 @@ public class CardController {
 
 
     @GetMapping("/creature/{name}")
-    public CreatureCard getCreatureCardByName(@PathVariable String name)
+    public Card getCreatureCardByName(@PathVariable String name)
     {
         return creatureService.findCreatureCardByName(name);
     }
 
     @GetMapping("/creatures")
-    public List<CreatureCard> getAllCreatures (){
+    public List<Card> getAllCreatures (){
         return creatureService.getAllCreatures();
     }
 
     @GetMapping("/card/page")
-    public Page<CreatureCard> findAll(@RequestParam int page, @RequestParam int size){
+    public Page<Card> findAll(@RequestParam int page, @RequestParam int size){
         PageRequest pageRequest = PageRequest.of(page,size);
         return creatureRepository.findAll(pageRequest);
     }
 
     @GetMapping("creature/{name}/{manaCost}")
-    public List<CreatureCard> getAllCardByNameAndManaCost
+    public List<Card> getAllCardByNameAndManaCost
             (@PathVariable String manaCost, @PathVariable String name){
         return creatureService.findCardsByNameAndManaCost(name, Integer.parseInt(manaCost));
     }
 
     @GetMapping("creature/detail/{detail}/value/{value}")
-    public List<CreatureCard> getAllCardsByDetail(@PathVariable String detail, @PathVariable String value){
+    public List<Card> getAllCardsByDetail(@PathVariable String detail, @PathVariable String value){
         return creatureService.findCardsByDetail(detail,value);
     }
 

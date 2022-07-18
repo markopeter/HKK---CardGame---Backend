@@ -1,6 +1,6 @@
 package com.cardgameproject.cardgame.controller;
 
-import com.cardgameproject.cardgame.entity.CreatureCard;
+import com.cardgameproject.cardgame.entity.Card;
 import com.cardgameproject.cardgame.entity.DeckEntity;
 import com.cardgameproject.cardgame.service.CreatureCardService;
 import com.cardgameproject.cardgame.service.DeckService;
@@ -26,7 +26,7 @@ public class DeckController {
 
     @PostMapping(value = "/deck/create")
     public DeckEntity createDeck (@RequestBody Map<String, Object> payLoad){
-        List<CreatureCard> cards = new ArrayList<>();
+        List<Card> cards = new ArrayList<>();
         DeckEntity deck = DeckEntity.builder()
                 .cards(cards)
                 .deckName((String)payLoad.get("name"))
@@ -41,7 +41,7 @@ public class DeckController {
     }
 
     @GetMapping(value ="deck/{name}")
-    public List<CreatureCard> getCardsFromDeck(@PathVariable String name){
+    public List<Card> getCardsFromDeck(@PathVariable String name){
         DeckEntity deck = deckService.getDeckByName(name);
         return deck.getCards();
     }

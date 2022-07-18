@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity(name = "CreatureCard")
+@Entity
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-@Table(name = "creaturecard")
-public class CreatureCard {
+@Table(name = "cards")
+public class Card {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,11 @@ public class CreatureCard {
     private boolean canUseWeapon;
     private String description;
     private String imageUrl;
-    @ManyToMany(mappedBy="cards")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE
+            },
+            mappedBy = "cards")
     @JsonIgnore
     private List<DeckEntity> decks = new ArrayList<>();
 

@@ -15,7 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="PetProject---CardGame" value="03ad2330-e39a-4110-82d9-d5434db8d6d1" />
+          <factory-entry name="PetProject---CardGame" value="e28bdeab-912e-41c7-b97e-c664ec5dbb1d" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -64,7 +64,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.21" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.21" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.21" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.21" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.21" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.21" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.24" level="project" />
@@ -145,5 +144,12 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: io.github.cdimascio:dotenv-java:2.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.7.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.21" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.7.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:5.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.7.2" level="project" />
   </component>
 </module>
