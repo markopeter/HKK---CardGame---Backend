@@ -17,7 +17,9 @@
         <datasource-mapping>
           <factory-entry name="PetProject---CardGame" value="e28bdeab-912e-41c7-b97e-c664ec5dbb1d" />
         </datasource-mapping>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="PetProject---CardGame" />
+        </naming-strategy-map>
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
