@@ -6,9 +6,7 @@ import com.cardgameproject.cardgame.model.UserModel;
 import com.cardgameproject.cardgame.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,6 +35,14 @@ public class RegistrationController {
 
         return "http://" + request.getServerName() + ":" + request.getServerPort()
                 + request.getContextPath();
+    }
+    @GetMapping("/verifyRegistration")
+    public String verityRegistration(@RequestParam("token") String token){
+        String result = userService.validateVerificationToken(token);
+        if(result.equalsIgnoreCase("valid")){
+            return "User verified succesfully ";
+        }
+        return "Invalid user";
     }
 
 
