@@ -1,33 +1,53 @@
 package com.cardgameproject.cardgame.data;
-import com.cardgameproject.cardgame.entity.Card;
-import com.cardgameproject.cardgame.entity.DeckEntity;
+import com.cardgameproject.cardgame.entity.Authority;
+import com.cardgameproject.cardgame.entity.UserEntity;
+import com.cardgameproject.cardgame.repository.AuthorityRepository;
 import com.cardgameproject.cardgame.repository.CreatureCardRepository;
 import com.cardgameproject.cardgame.repository.DeckRepository;
+import com.cardgameproject.cardgame.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.HashSet;
 
-import static com.cardgameproject.cardgame.enums.raceType.MONSTER;
-import static com.cardgameproject.cardgame.enums.rarityLevel.COMMON;
-import static com.cardgameproject.cardgame.enums.stateType.PASSIVE;
-
-//@Component
-//public class SampleDataLoader implements CommandLineRunner {
+@Component
+public class SampleDataLoader implements CommandLineRunner {
 
 
-//    private final CreatureCardRepository cardRepository;
-//    private final DeckRepository deckRepository;
-//
-//    public SampleDataLoader(CreatureCardRepository cardRepository, DeckRepository deckRepository) {
-//        this.cardRepository = cardRepository;
-//        this.deckRepository = deckRepository;
-//    }
-//
-//    @Override
-//    public void run(String... args) throws Exception {
+    private final CreatureCardRepository cardRepository;
+    private final DeckRepository deckRepository;
+    private final UserRepository userRepository;
+    private final AuthorityRepository authorityRepository;
+    private PasswordEncoder passwordEncoder;
+
+    public SampleDataLoader(CreatureCardRepository cardRepository, DeckRepository deckRepository, UserRepository userRepository, AuthorityRepository authorityRepository, PasswordEncoder passwordEncoder) {
+        this.cardRepository = cardRepository;
+        this.deckRepository = deckRepository;
+        this.userRepository = userRepository;
+        this.authorityRepository = authorityRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode("1234");
+        System.out.println(encodedPassword);
+        UserEntity user = UserEntity.builder()
+                .username("test")
+                .password(encodedPassword)
+                .build();
+        userRepository.save(user);
+        Authority auth = Authority.builder()
+                .authority("ROLE_STUDENT")
+                .user(user)
+                .build();
+        authorityRepository.save(auth);
+        userRepository.save(user);
+        System.out.println(user.getPassword());
 //        List<Card> sampleListOne = new ArrayList<>();
 //        List<Card> sampleListTwo = new ArrayList<>();
 //        List<Card> sampleListThree = new ArrayList<>();
@@ -84,5 +104,5 @@ import static com.cardgameproject.cardgame.enums.stateType.PASSIVE;
 //        deckRepository.save(sampleDeck2);
 //        deckRepository.save(sampleDeck3);
 //
-//    }
-//}
+    }
+}
