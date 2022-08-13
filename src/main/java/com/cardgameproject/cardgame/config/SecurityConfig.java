@@ -53,9 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
                 }).and();
         http.authorizeRequests()
-                .antMatchers("/api/auth/login**").permitAll()
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/api").permitAll()
+                .anyRequest().authenticated();
 
         // Our filter happen first before the built-in filter
 
