@@ -11,13 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080", "https://fast-dusk-75315.herokuapp.com"}, allowCredentials = "true",
-        methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
-        , allowedHeaders = "*")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080", "https://fast-dusk-75315.herokuapp.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
