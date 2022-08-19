@@ -14,6 +14,7 @@ import java.util.List;
         methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
         , allowedHeaders = "*")
 @RestController
+@RequestMapping("/api")
 public class CardController {
 
     private CreatureCardService creatureService;
