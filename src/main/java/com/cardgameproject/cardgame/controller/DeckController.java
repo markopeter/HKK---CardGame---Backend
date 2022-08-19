@@ -2,9 +2,12 @@ package com.cardgameproject.cardgame.controller;
 
 import com.cardgameproject.cardgame.entity.Card;
 import com.cardgameproject.cardgame.entity.DeckEntity;
+import com.cardgameproject.cardgame.entity.UserEntity;
 import com.cardgameproject.cardgame.service.CreatureCardService;
 import com.cardgameproject.cardgame.service.DeckService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -13,6 +16,7 @@ import java.util.*;
         methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
         , allowedHeaders = "*")
 @RestController
+@RequestMapping("/api")
 public class DeckController {
 
     private DeckService deckService;
@@ -25,14 +29,10 @@ public class DeckController {
     }
 
     @PostMapping(value = "/deck/create")
-    public DeckEntity createDeck (@RequestBody Map<String, Object> payLoad){
-        List<Card> cards = new ArrayList<>();
-        DeckEntity deck = DeckEntity.builder()
-                .cards(cards)
-                .deckName((String)payLoad.get("name"))
-                .build();
-        deckService.createDeck(deck);
-        return deck;
+    public ResponseEntity<?> createDeck (@RequestBody Map<String, Object> payLoad,
+                                         @AuthenticationPrincipal UserEntity user){
+        DeckEntity deck = deckService.createDeck((String)payLoad.get("name"), user);
+        return ResponseEntity.ok(deck);
     }
 
     @GetMapping(value = "/deck")
@@ -40,7 +40,7 @@ public class DeckController {
         return deckService.getAllDecks();
     }
 
-    @GetMapping(value ="deck/{name}")
+    @GetMapping(value ="/deck/{name}")
     public List<Card> getCardsFromDeck(@PathVariable String name){
         DeckEntity deck = deckService.getDeckByName(name);
         return deck.getCards();
@@ -51,7 +51,7 @@ public class DeckController {
         deckService.deleteDeck(Long.valueOf(id));
     }
 
-    @GetMapping(value ="deck/add-card/{name}")
+    @GetMapping(value ="/deck/add-card/{name}")
     public DeckEntity getDeckEntity(@PathVariable String name){
          return deckService.getDeckByName(name);
     }
