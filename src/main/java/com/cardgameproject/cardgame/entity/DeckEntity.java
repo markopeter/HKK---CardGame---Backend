@@ -28,4 +28,6 @@ public class DeckEntity {
     private List<Card> cards = new ArrayList<>();
 
     private String deckName;
+    @ManyToOne(optional = false)
+    private UserEntity user;
 }
