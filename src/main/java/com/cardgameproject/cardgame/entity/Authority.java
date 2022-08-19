@@ -1,6 +1,5 @@
 package com.cardgameproject.cardgame.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
