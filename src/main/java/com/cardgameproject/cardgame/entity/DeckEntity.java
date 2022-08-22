@@ -25,7 +25,7 @@ public class DeckEntity {
             joinColumns = { @JoinColumn(name = "DeckEntity_id")},
             inverseJoinColumns = { @JoinColumn(name = "Card_id")})
     @JsonIgnore
-    private List<Card> cards = new ArrayList<>();
+    private List<CardEntity> cards = new ArrayList<>();
 
     private String deckName;
     @ManyToOne(optional = false)

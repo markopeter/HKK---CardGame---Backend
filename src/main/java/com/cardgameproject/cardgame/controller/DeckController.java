@@ -1,6 +1,6 @@
 package com.cardgameproject.cardgame.controller;
 
-import com.cardgameproject.cardgame.entity.Card;
+import com.cardgameproject.cardgame.entity.CardEntity;
 import com.cardgameproject.cardgame.entity.DeckEntity;
 import com.cardgameproject.cardgame.entity.UserEntity;
 import com.cardgameproject.cardgame.service.CreatureCardService;
@@ -41,7 +41,7 @@ public class DeckController {
     }
 
     @GetMapping(value ="/deck/{name}")
-    public List<Card> getCardsFromDeck(@PathVariable String name){
+    public List<CardEntity> getCardsFromDeck(@PathVariable String name){
         DeckEntity deck = deckService.getDeckByName(name);
         return deck.getCards();
     }
