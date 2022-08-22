@@ -1,6 +1,6 @@
 package com.cardgameproject.cardgame.data;
 import com.cardgameproject.cardgame.entity.Authority;
-import com.cardgameproject.cardgame.entity.Card;
+import com.cardgameproject.cardgame.entity.CardEntity;
 import com.cardgameproject.cardgame.entity.DeckEntity;
 import com.cardgameproject.cardgame.entity.UserEntity;
 import com.cardgameproject.cardgame.repository.AuthorityRepository;
@@ -42,7 +42,6 @@ public class SampleDataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode("1234");
-        System.out.println(encodedPassword);
         UserEntity user = UserEntity.builder()
                 .username("test")
                 .password(encodedPassword)
@@ -54,10 +53,9 @@ public class SampleDataLoader implements CommandLineRunner {
                 .build();
         authorityRepository.save(auth);
         userRepository.save(user);
-        System.out.println(user.getPassword());
-        List<Card> sampleListOne = new ArrayList<>();
-        List<Card> sampleListTwo = new ArrayList<>();
-        List<Card> sampleListThree = new ArrayList<>();
+        List<CardEntity> sampleListOne = new ArrayList<>();
+        List<CardEntity> sampleListTwo = new ArrayList<>();
+        List<CardEntity> sampleListThree = new ArrayList<>();
         int amountOfCards = 30;
         String [] randomNames = {"SpookySkeleton", "BoogeyMan", "BigBadWolf", "ScaryGhost", "TerrificTroll"};
         String [] randomPictures = {"https://www.beholder.hu/pic/galeria/0497.jpg",
@@ -65,20 +63,21 @@ public class SampleDataLoader implements CommandLineRunner {
                 "https://www.beholder.hu/pic/galeria/0464.jpg",
         "https://www.beholder.hu/pic/galeria/0451.jpg", "https://www.beholder.hu/pic/galeria/0420.jpg"};
         Random rand = new Random();
+        int highestManaCost = 10;
+        int highestBaseHealth = 10;
+        int highestBaseAttack = 10;
         for(int i = 0; i < amountOfCards; i++) {
 
-            Card testCard = Card.builder()
-                    .baseAttack(rand.nextInt((10 - 1) + 1) + 1)
-                    .baseHealth(rand.nextInt((10 - 1) + 1) + 1)
+            CardEntity testCard = CardEntity.builder()
+                    .baseAttack(rand.nextInt((highestBaseAttack - 1) + 1) + 1)
+                    .baseHealth(rand.nextInt((highestBaseHealth - 1) + 1) + 1)
                     .canUseWeapon(true)
                     .description("This the test card number : " + i)
-                    .manaCost(rand.nextInt((10 - 1) + 1) + 1)
-                    //TODO
-                    //Get rid of magic numbers, extract them out the variables
-                    .name(randomNames[rand.nextInt((4 - 1) + 1) + 1] + i)
+                    .manaCost(rand.nextInt((highestManaCost - 1) ) + 1)
+                    .name(randomNames[rand.nextInt((randomNames.length - 1) ) + 1] + i)
                     .race(MONSTER)
                     .rarity(COMMON)
-                    .imageUrl(randomPictures[rand.nextInt((4 - 1) + 1) + 1])
+                    .imageUrl(randomPictures[rand.nextInt((randomPictures.length - 1) ) + 1])
                     .state(PASSIVE)
                     .build();
 

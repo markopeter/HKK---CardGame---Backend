@@ -1,8 +1,10 @@
 package com.cardgameproject.cardgame.controller;
 
-import com.cardgameproject.cardgame.entity.Card;
+import com.cardgameproject.cardgame.dto.CardDto;
+import com.cardgameproject.cardgame.entity.CardEntity;
 import com.cardgameproject.cardgame.repository.CreatureCardRepository;
 import com.cardgameproject.cardgame.service.CreatureCardService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,39 +22,40 @@ public class CardController {
     private CreatureCardService creatureService;
     private CreatureCardRepository creatureRepository;
 
+
     @Autowired
-    public CardController(CreatureCardService creatureService, CreatureCardRepository creatureRepository) {
+    public CardController(CreatureCardService creatureService, CreatureCardRepository creatureRepository, ModelMapper modelMapper) {
         this.creatureService = creatureService;
         this.creatureRepository = creatureRepository;
     }
 
 
     @GetMapping("/creature/{name}")
-    public Card getCreatureCardByName(@PathVariable String name)
+    public CardDto getCreatureCardByName(@PathVariable String name)
     {
-        return creatureService.findCreatureCardByName(name);
+         return creatureService.findCreatureCardByName(name);
     }
 
     @GetMapping("/creatures")
-    public List<Card> getAllCreatures (){
+    public List<CardDto> getAllCreatures (){
         return creatureService.getAllCreatures();
     }
 
     @GetMapping("/card/page")
-    public Page<Card> findAll(@RequestParam int page, @RequestParam int size){
+    public Page<CardEntity> findAll(@RequestParam int page, @RequestParam int size){
         PageRequest pageRequest = PageRequest.of(page,size);
         return creatureRepository.findAll(pageRequest);
     }
 
-    @GetMapping("creature/{name}/{manaCost}")
-    public List<Card> getAllCardByNameAndManaCost
+    @GetMapping("/creature/{name}/{manaCost}")
+    public List<CardDto> getAllCardByNameAndManaCost
             (@PathVariable String manaCost, @PathVariable String name){
-        return creatureService.findCardsByNameAndManaCost(name, Integer.parseInt(manaCost));
+        return creatureService.findCardsByNameAndManaCost(
+                name, Integer.parseInt(manaCost));
     }
 
-    @GetMapping("creature/detail/{detail}/value/{value}")
-    public List<Card> getAllCardsByDetail(@PathVariable String detail, @PathVariable String value){
+    @GetMapping("/creature/detail/{detail}/value/{value}")
+    public List<CardDto> getAllCardsByDetail(@PathVariable String detail, @PathVariable String value){
         return creatureService.findCardsByDetail(detail,value);
     }
-
 }

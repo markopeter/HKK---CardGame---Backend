@@ -1,6 +1,6 @@
 package com.cardgameproject.cardgame.service;
 
-import com.cardgameproject.cardgame.entity.Card;
+import com.cardgameproject.cardgame.entity.CardEntity;
 import com.cardgameproject.cardgame.entity.DeckEntity;
 import com.cardgameproject.cardgame.entity.UserEntity;
 import com.cardgameproject.cardgame.repository.CreatureCardRepository;
@@ -24,7 +24,7 @@ public class DeckService {
     }
 
     public DeckEntity createDeck(String name, UserEntity user){
-        List<Card> cards = new ArrayList<>();
+        List<CardEntity> cards = new ArrayList<>();
         DeckEntity deck = DeckEntity.builder()
                 .cards(cards)
                 .deckName(name)
@@ -48,8 +48,8 @@ public class DeckService {
 
     public void addCardToDeck(String name, Long cardId){
         DeckEntity selectedDeck = deckRepository.findDeckEntityByDeckName(name);
-        Card cardToAdd = creatureCardRepository.findById(cardId).get();
-        List<Card> cards = selectedDeck.getCards();
+        CardEntity cardToAdd = creatureCardRepository.findById(cardId).get();
+        List<CardEntity> cards = selectedDeck.getCards();
         cards.add(cardToAdd);
         deckRepository.save(selectedDeck);
     }

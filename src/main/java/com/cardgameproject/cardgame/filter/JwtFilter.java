@@ -19,16 +19,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
-import static org.springframework.util.StringUtils.hasText;
+import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-    private UserRepository userRepository;
-    private JwtUtil jwtUtil;
+    private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
     @Autowired
     public JwtFilter(UserRepository userRepository, JwtUtil jwtUtil) {

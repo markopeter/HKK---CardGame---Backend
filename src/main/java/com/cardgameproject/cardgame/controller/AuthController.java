@@ -1,10 +1,8 @@
 package com.cardgameproject.cardgame.controller;
 
 import com.cardgameproject.cardgame.dto.AuthCredentialsRequest;
-import com.cardgameproject.cardgame.dto.AuthCredentialsRequest;
 import com.cardgameproject.cardgame.entity.UserEntity;
 import com.cardgameproject.cardgame.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +16,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
+
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
+        this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
+    }
+
 
     @PostMapping("login")
     public ResponseEntity <?> login(@RequestBody (required = false) AuthCredentialsRequest request){
