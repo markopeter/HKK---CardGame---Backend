@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"https://fast-dusk-75315.herokuapp.com" , "http://localhost:3000"},
         methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}
@@ -22,28 +21,24 @@ public class CardController {
 
     private CreatureCardService creatureService;
     private CreatureCardRepository creatureRepository;
-    private ModelMapper modelMapper;
+
 
     @Autowired
     public CardController(CreatureCardService creatureService, CreatureCardRepository creatureRepository, ModelMapper modelMapper) {
         this.creatureService = creatureService;
         this.creatureRepository = creatureRepository;
-        this.modelMapper = modelMapper;
     }
 
 
     @GetMapping("/creature/{name}")
     public CardDto getCreatureCardByName(@PathVariable String name)
     {
-         return convertToDto(creatureService.findCreatureCardByName(name));
+         return creatureService.findCreatureCardByName(name);
     }
 
     @GetMapping("/creatures")
     public List<CardDto> getAllCreatures (){
-        List<CardEntity> allCards = creatureService.getAllCreatures();
-        return allCards.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+        return creatureService.getAllCreatures();
     }
 
     @GetMapping("/card/page")
@@ -55,23 +50,12 @@ public class CardController {
     @GetMapping("/creature/{name}/{manaCost}")
     public List<CardDto> getAllCardByNameAndManaCost
             (@PathVariable String manaCost, @PathVariable String name){
-        List<CardEntity> searchResult = creatureService.findCardsByNameAndManaCost(
+        return creatureService.findCardsByNameAndManaCost(
                 name, Integer.parseInt(manaCost));
-        return searchResult.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
     }
 
     @GetMapping("/creature/detail/{detail}/value/{value}")
     public List<CardDto> getAllCardsByDetail(@PathVariable String detail, @PathVariable String value){
-        List<CardEntity> searchResult = creatureService.findCardsByDetail(detail,value);
-        return searchResult.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+        return creatureService.findCardsByDetail(detail,value);
     }
-
-    private CardDto convertToDto(CardEntity card) {
-        return modelMapper.map(card, CardDto.class);
-    }
-
 }
