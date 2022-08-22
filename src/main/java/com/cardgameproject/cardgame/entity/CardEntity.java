@@ -4,21 +4,20 @@ import com.cardgameproject.cardgame.enums.raceType;
 import com.cardgameproject.cardgame.enums.rarityLevel;
 import com.cardgameproject.cardgame.enums.stateType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
 @Table(name = "cards")
-public class Card {
+public class CardEntity {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
