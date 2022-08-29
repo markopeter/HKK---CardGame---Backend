@@ -3,10 +3,8 @@ import com.cardgameproject.cardgame.entity.Authority;
 import com.cardgameproject.cardgame.entity.CardEntity;
 import com.cardgameproject.cardgame.entity.DeckEntity;
 import com.cardgameproject.cardgame.entity.UserEntity;
-import com.cardgameproject.cardgame.repository.AuthorityRepository;
-import com.cardgameproject.cardgame.repository.CreatureCardRepository;
-import com.cardgameproject.cardgame.repository.DeckRepository;
-import com.cardgameproject.cardgame.repository.UserRepository;
+import com.cardgameproject.cardgame.repository.*;
+import com.cardgameproject.cardgame.service.OriginalCardService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,13 +27,15 @@ public class SampleDataLoader implements CommandLineRunner {
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
     private PasswordEncoder passwordEncoder;
+    private OriginalCardService originalCardService;
 
-    public SampleDataLoader(CreatureCardRepository cardRepository, DeckRepository deckRepository, UserRepository userRepository, AuthorityRepository authorityRepository, PasswordEncoder passwordEncoder) {
+    public SampleDataLoader(CreatureCardRepository cardRepository, DeckRepository deckRepository, UserRepository userRepository, AuthorityRepository authorityRepository, PasswordEncoder passwordEncoder, OriginalCardRepository originalCardRepository, OriginalCardService originalCardService) {
         this.cardRepository = cardRepository;
         this.deckRepository = deckRepository;
         this.userRepository = userRepository;
         this.authorityRepository = authorityRepository;
         this.passwordEncoder = passwordEncoder;
+        this.originalCardService = originalCardService;
     }
 
     @Override
@@ -112,6 +112,7 @@ public class SampleDataLoader implements CommandLineRunner {
         deckRepository.save(sampleDeck1);
         deckRepository.save(sampleDeck2);
         deckRepository.save(sampleDeck3);
+        originalCardService.createAllOriginalCards();
 
     }
 }
