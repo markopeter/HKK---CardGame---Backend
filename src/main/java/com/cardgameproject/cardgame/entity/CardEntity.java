@@ -2,13 +2,12 @@ package com.cardgameproject.cardgame.entity;
 
 import com.cardgameproject.cardgame.enums.raceType;
 import com.cardgameproject.cardgame.enums.rarityLevel;
-import com.cardgameproject.cardgame.enums.stateType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.cardgameproject.cardgame.enums.monsterStateType;
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -19,13 +18,13 @@ import java.util.List;
 @Table(name = "cards")
 public class CardEntity {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( nullable = false, unique = true)
     private Long id;
     @Column(
             name = "state",
             nullable = false)
-    private stateType state;
+    private monsterStateType state;
     @Column(
             name="manaCost",
             nullable = false
@@ -35,6 +34,7 @@ public class CardEntity {
             name="name",
             nullable = false
     )
+    @NaturalId
     private String name;
     private raceType race;
     private rarityLevel rarity;
@@ -48,8 +48,19 @@ public class CardEntity {
                     CascadeType.MERGE
             },
             mappedBy = "cards")
-    @JsonIgnore
+
     private List<DeckEntity> decks = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CardEntity card = (CardEntity) o;
+        return Objects.equals(name, card.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
