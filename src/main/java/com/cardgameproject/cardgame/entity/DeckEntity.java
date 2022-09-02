@@ -26,8 +26,22 @@ public class DeckEntity {
             inverseJoinColumns = { @JoinColumn(name = "Card_id")})
     @JsonIgnore
     private List<CardEntity> cards = new ArrayList<>();
-
     private String deckName;
     @ManyToOne(optional = false)
     private UserEntity user;
+
+    @OneToMany(mappedBy = "deck", orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<GameEntity> games = new ArrayList<>();
+
+    public void addGame(GameEntity game){
+        games.add(game);
+        game.setDeck(this);
+    }
+
+    public void removeGame(GameEntity game) {
+        games.remove(game);
+        game.setDeck(null);
+    }
+
 }
