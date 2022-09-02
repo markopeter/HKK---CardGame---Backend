@@ -3,11 +3,11 @@ package com.cardgameproject.cardgame.enums;
 import lombok.Getter;
 
 @Getter
-public enum stateType {
+public enum monsterStateType {
     ACTIVE("A"), PASSIVE("P"), DEAD("D");
     private String code;
 
-    stateType(String code) {
+    monsterStateType(String code) {
         this.code = code;
     }
 }
