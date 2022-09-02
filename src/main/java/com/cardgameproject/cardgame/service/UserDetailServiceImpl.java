@@ -30,4 +30,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
         Optional<UserEntity> userOpt = userRepository.findByUsername(username);
         return userOpt.orElseThrow(() -> new UsernameNotFoundException("Invalid credentials"));
     }
+
+    public void saveUser(UserEntity user) throws UsernameNotFoundException {
+        userRepository.save(user);
+    }
+
+    public UserEntity getUserById(Long id){
+        return userRepository.findById(id).orElse(null);
+    }
 }
