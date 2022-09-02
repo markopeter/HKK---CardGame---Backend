@@ -2,25 +2,29 @@ package com.cardgameproject.cardgame.service;
 
 import com.cardgameproject.cardgame.entity.CardEntity;
 import com.cardgameproject.cardgame.entity.DeckEntity;
+import com.cardgameproject.cardgame.entity.GameEntity;
 import com.cardgameproject.cardgame.entity.UserEntity;
 import com.cardgameproject.cardgame.repository.CreatureCardRepository;
 import com.cardgameproject.cardgame.repository.DeckRepository;
+import com.cardgameproject.cardgame.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class DeckService {
 
     private DeckRepository deckRepository;
     private CreatureCardRepository creatureCardRepository;
+    private GameRepository gameEntityRepository;
+
 
     @Autowired
-    public DeckService(DeckRepository deckRepository, CreatureCardRepository creatureCardRepository) {
+    public DeckService(DeckRepository deckRepository, CreatureCardRepository creatureCardRepository, GameRepository gameEntityRepository) {
         this.deckRepository = deckRepository;
         this.creatureCardRepository = creatureCardRepository;
+        this.gameEntityRepository = gameEntityRepository;
     }
 
     public DeckEntity createDeck(String name, UserEntity user){
@@ -53,4 +57,34 @@ public class DeckService {
         cards.add(cardToAdd);
         deckRepository.save(selectedDeck);
     }
+
+    public Set<CardEntity> getMulligan (Long id){
+        Random rand = new Random();
+        GameEntity game = gameEntityRepository.findById(id).orElse(null);
+        assert game != null;
+        DeckEntity deck = game.getDeck();
+        Set<CardEntity> mulligan = new HashSet<>();
+        int handSize = 5;
+
+        while(mulligan.size() != handSize){
+            mulligan.add(deck.getCards().get(rand.nextInt(deck.getCards().size())));
+        }
+        return mulligan;
+    }
+
+    public void saveDeck(DeckEntity deck){
+        deckRepository.save(deck);
+    }
+
+    public DeckEntity getDeckByUserIdAndDeckId (Long user_id, Long deck_id){
+        List<DeckEntity> decks = deckRepository.findDeckEntitiesByUserId(user_id);
+        DeckEntity deckToAdd = null;
+        for (DeckEntity deck : decks) {
+            if(Objects.equals(deck.getId(), deck_id)){
+                deckToAdd = deck;
+            }
+        }
+        return deckToAdd;
+    }
+
 }
