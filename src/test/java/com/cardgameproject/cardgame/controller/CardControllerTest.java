@@ -18,7 +18,7 @@ import java.util.List;
 
 import static com.cardgameproject.cardgame.enums.raceType.MONSTER;
 import static com.cardgameproject.cardgame.enums.rarityLevel.COMMON;
-import static com.cardgameproject.cardgame.enums.stateType.PASSIVE;
+import static com.cardgameproject.cardgame.enums.monsterStateType.PASSIVE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)

@@ -16,7 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="PetProject---CardGame" value="e28bdeab-912e-41c7-b97e-c664ec5dbb1d" />
-          <factory-entry name="entityManagerFactory" value="e28bdeab-912e-41c7-b97e-c664ec5dbb1d" />
+          <factory-entry name="entityManagerFactory" value="f2405cb4-1346-47a1-9028-dd793178c236" />
         </datasource-mapping>
         <naming-strategy-map>
           <unit-entry name="PetProject---CardGame" />
